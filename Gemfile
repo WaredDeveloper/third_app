@@ -1,8 +1,11 @@
 ruby '2.7.0'
-
+gem 'sassc-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
+gem 'bcrypt'
 gem 'sqlite3', '~> 1.3.6'
+gem 'bootstrap-sass'
+gem 'turbolinks'
 group :production do  
 	gem 'pg',		'0.17.1'  
 	gem 'rails_12factor', '0.0.2'
