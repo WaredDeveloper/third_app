@@ -1,4 +1,5 @@
 class MicropostsController < ApplicationController
+  respond_to :js, :html, :json
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
@@ -13,10 +14,21 @@ class MicropostsController < ApplicationController
   end
 end
 
+
+
   def destroy
     @micropost.destroy
     flash[:success] = "Micropost deleted"
     redirect_to request.referrer || root_url
+  end
+
+  def like
+    @micropost = Micropost.find(params[:id])
+    if params[:format] == 'like'
+     @micropost.liked_by current_user
+    elsif params[:format] == 'unlike'
+      @micropost.unliked_by current_user
+    end
   end
 
   private

@@ -1,4 +1,5 @@
 <li id="micropost-<%= micropost.id %>">
+
   <%= link_to gravatar_for(micropost.user, size: 50), micropost.user %>
   <span class="user">
     <%= link_to micropost.user.name, micropost.user %>
@@ -7,10 +8,52 @@
     <%= micropost.content %>
     <%= image_tag micropost.picture.url if micropost.picture? %>
   </span>
+  <hr>
+  <h2>
+    Все коментарии
+  </h2>
+  <% micropost.comments.each do |comment| %>
+  <div class="alert alert-light">
+  <p><strong> <%= comment.username %></strong> <%= comment.body %></p>
+  </div>
+  <% end %>
+  <hr>
+  <h2> Добавление комментария  </h2>
+  <%= form_for([micropost, micropost.comments.build]) do |f| %>
+    <p>
+      Коментарий <br>
+      <%= f.text_field(:username, {:class =>'form-control'})%>
+    </p>
+
+    <p>
+      <%= f.submit("Добавить комментарий", {:class => 'btn btn-warning'}) %>
+    </p>
+    <% end %>
   <span class="timestamp">
       Posted <%= time_ago_in_words(micropost.created_at) %> ago.
       <% if current_user?(micropost.user) %>
         <%= link_to "delete", micropost, method: :delete, data: {confirm: "You sure?"} %>
         <% end %>
+        <span class='parent-likes'>
+          <span class="like_count" <%= micropost%>>
+            <%= micropost.get_likes.size %>&#10084
+          </span>
+
+          <a>
+            <% if current_user.liked? micropost %>
+            <div>
+              <%= link_to like_micropost_path(micropost, 'unlike'), class: "preach-btn",
+              method: :put, remote: :true do %> Preached
+              </div>
+              <% end %>
+              <% else %>
+                <div> <%= link_to like_micropost_path(micropost, 'like'), class: "preach-btn",
+                  method: :put, remote: :true do %> Preach
+                </div>
+                <% end %>
+                <% end %>
+
+          </a>
+        </span>
   </span>
 </li>
