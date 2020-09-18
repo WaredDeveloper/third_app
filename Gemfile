@@ -18,11 +18,11 @@ gem 'bootstrap-sass'
 gem 'turbolinks'
 gem 'responders', '~> 3.0', '>= 3.0.1'
 group :production do
-	gem 'pg',		'0.17.1'
-	gem 'rails_12factor', '0.0.2'
+	gem 'pg', '~> 1.2', '>= 1.2.3'
+	gem 'rails_12factor', '~> 0.0.3'
 	gem 'puma'
 end
-gem 'rake'
+gem 'rake', '~> 13.0', '>= 13.0.1'
 gem 'acts_as_votable', '~> 0.12.1'
 
 
