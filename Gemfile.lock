@@ -358,6 +358,7 @@ DEPENDENCIES
   bootsnap
   bootstrap-sass
   bootstrap-will_paginate (~> 1.0)
+  bundler (~> 2.1, >= 2.1.4)
   carrierwave (~> 2.0)
   faker
   fog (~> 1.38)
