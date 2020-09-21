@@ -3,6 +3,7 @@ class MicropostsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user, only: :destroy
 
+
   def create
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
@@ -22,6 +23,10 @@ end
     redirect_to request.referrer || root_url
   end
 
+  def who
+    @user = current_user
+  end 
+
   def like
     @micropost = Micropost.find(params[:id])
     if params[:format] == 'like'
@@ -30,6 +35,8 @@ end
       @micropost.unliked_by current_user
     end
   end
+
+
 
   private
 

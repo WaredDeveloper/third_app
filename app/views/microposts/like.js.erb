@@ -1,11 +1,11 @@
 $('.preached-btn').on('ajax:success', function(){
   $(this).parent().parent().find('.like_count')
   .html('<%= @micropost.get_likes.size %> &#65039');
-  $(this).closest('.preached-btn').html('Preached');
+  $(this).closest('.preached-btn').html('like');
 });
 
 $('.preach-btn').on('ajax:success', function(){
   $(this).parent().parent().find('.like_count')
   .html('<%= @micropost.get_likes.size %> &#65039');
-  $(this).closest('.preach-btn').html('Preached');
+  $(this).closest('.preach-btn').html('like');
 });

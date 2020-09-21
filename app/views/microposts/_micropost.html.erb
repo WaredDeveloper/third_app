@@ -14,11 +14,14 @@
   </h2>
   <% micropost.comments.each do |comment| %>
   <div class="alert alert-light">
-  <p><strong> <%= comment.username %></strong> <%= comment.body %></p>
+    <p>
+      <hr>
+        <strong><%= comment.username %></strong> <%= comment.body %>
+      </hr>
+    </p>
   </div>
-  <% end %>
+<% end %>
   <hr>
-  <h2> Добавление комментария  </h2>
   <%= form_for([micropost, micropost.comments.build]) do |f| %>
     <p>
       Коментарий <br>
@@ -43,12 +46,12 @@
             <% if current_user.liked? micropost %>
             <div>
               <%= link_to like_micropost_path(micropost, 'unlike'), class: "preach-btn",
-              method: :put, remote: :true do %> Preached
+              method: :put, remote: :true do %> Liked
               </div>
               <% end %>
               <% else %>
                 <div> <%= link_to like_micropost_path(micropost, 'like'), class: "preach-btn",
-                  method: :put, remote: :true do %> Preach
+                  method: :put, remote: :true do %> Like
                 </div>
                 <% end %>
                 <% end %>

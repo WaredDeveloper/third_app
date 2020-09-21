@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :relationships
-  resources :users do
+  resources :users do # вывод всех методов действий для ресурса Users
     member do
       get :following, :followers
     end
