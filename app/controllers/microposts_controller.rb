@@ -23,10 +23,6 @@ end
     redirect_to request.referrer || root_url
   end
 
-  def who
-    @user = current_user
-  end 
-
   def like
     @micropost = Micropost.find(params[:id])
     if params[:format] == 'like'
